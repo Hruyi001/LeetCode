@@ -1080,15 +1080,19 @@ public:
 ```cpp
 class Solution {
 public:
+    // f[i]表示第i个孩子至少需要多少糖果，由第i-1个孩子的糖果和第i+1个孩子的谈过转移而来
     vector<int> f;
     vector<int> w;
     int n;
+    // 记忆化搜索，
     int dp(int x) {
+        // 如果之前已经搜索过
         if(f[x] != -1) return f[x];
+        // 第一次搜索，糖果初始化为1
         f[x] = 1;
         //左边的评分比它小，糖果至少+1
         if(x && w[x - 1] < w[x]) f[x] = max(f[x], dp(x - 1) + 1);
-         //右边的评分比它小，糖果至少+1
+         //右边的评分比它小，糖果至少+1， x+1还没搜索到，用dp搜索
         if(x < n - 1 && w[x] > w[x + 1]) f[x] = max(f[x], dp(x + 1) + 1);
         return f[x];
     }
