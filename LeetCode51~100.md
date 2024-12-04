@@ -169,7 +169,7 @@ class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
         //满足两个原则即可合并成功，
-        //1. 按照区间左边界排序 2. 如果两个区间有交集，则前面区间的有边界大于后面区间的左边界
+        //1. 按照区间左边界排序 2. 如果两个区间有交集，则前面区间的右边界大于后面区间的左边界
         vector<vector<int>> res;
         sort(intervals.begin(), intervals.end());
         int l = intervals[0][0], r = intervals[0][1];
