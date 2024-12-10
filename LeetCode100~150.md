@@ -1053,6 +1053,8 @@ public:
 ```
 ### 134.加油站[****](https://leetcode.cn/problems/gas-station/description/)
 ```cpp
+// 1. 如果start可以往后走n步，那就可以绕一圈，返回start即可
+// 2. 如果start只能走step步（step<n)到某个点j，那么下一个起点只能从start+step+1开始尝试。从中间的某个点k开始也是不可能跨过j点的，因为从start可以到k点，说明start到k可以带大于等于0的油量过来。带了油过来都跨越不了j点，那以k为起点肯定更加跨越不了j点。
 class Solution {
 public:
     int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
