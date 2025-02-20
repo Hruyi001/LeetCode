@@ -254,14 +254,13 @@ public:
 class Solution {
 public:
     int maxArea(vector<int>& height) {
-        int i = 0, j = height.size() - 1;
-        int res = 0;
-        while(i < j) {
-            res = max(res, (j - i) * min(height[i], height[j]));
-            if(height[i] < height[j]) i++;        
-            //容器左端高度小于右端高度，如果存在其他的最大值，那么左端右移
+        int res = 0, n = height.size();
+        // 双指针，从左往右找到左端点，从右往左找到右端点
+        for(int i = 0, j = n - 1;  i　< j; ) {
+            res = max(res, (j - i ) * min(height[i], height[j]));
+            // 随着j-i的缩小，只有两端高度的最小值变大，才能让区域面积变大
+            if(height[i] < height[j]) i++;
             else j--;
-            //容器左端高度大于右端高度，如果存在其他的最大值，那么右端左移
         }
         return res;
     }
